@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 import "./Products.css";
-import { addToLS, getStoredCard } from "../../utilities/localstorage";
+import { addToLS, getStoredCard, removeFromLS } from "../../utilities/localstorage";
 import Cart from "../Cart/Cart";
 
 const Products = () => {
@@ -35,10 +35,16 @@ const Products = () => {
     addToLS(product.id);
   };
 
+  const handelRemoveFromCart = id =>{
+    const remainingCart = cart.filter(product => product.id !== id);
+    setCart(remainingCart);
+    removeFromLS(id);
+  }
+
   return (
     <div>
       <h2>Available Product:{products.length}</h2>
-      <Cart cart={cart}></Cart>
+      <Cart cart={cart} handelRemoveFromCart={handelRemoveFromCart}></Cart>
       <div className="products">
         {products.map((product) => (
           <Product

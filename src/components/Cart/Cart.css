@@ -8,3 +8,13 @@
 .cart-container img{
     width: 150px;
 }
+
+.cart-inner-container{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cart-inner-container button{
+    background-color: aliceblue;
+}
